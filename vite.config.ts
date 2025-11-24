@@ -10,10 +10,18 @@ export default defineConfig(({ mode }) => {
         host: '0.0.0.0',
       },
       plugins: [react()],
+
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
       },
+
+      // 👇 AQUI AGREGAMOS ESTO
+      build: {
+        outDir: 'docs',   // <--- Carpeta de salida del build para GitHub Pages
+        emptyOutDir: true // Limpia la carpeta antes del build
+      },
+
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '.'),
